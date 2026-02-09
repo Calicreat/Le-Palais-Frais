@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Le Palais Frais – Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --vert-fonce: #0f3d3e;
+            --vert-clair: #1b7f7a;
+            --rouge: #c0392b;
+            --rose: #f8c4d8;
+            --fond: #fdf7fa;
+            --texte: #222;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--fond);
+            color: var(--texte);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--vert-fonce), var(--vert-clair));
+            color: white;
+            padding: 24px 16px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .brand {
+            max-width: 1100px;
+            margin: 0 auto 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 1.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(0,0,0,0.12);
+            backdrop-filter: blur(4px);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        nav a:hover {
+            background: rgba(0,0,0,0.25);
+            transform: translateY(-1px);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 24px auto 40px;
+            padding: 0 16px 40px;
+        }
+
+        .intro {
+            background: white;
+            border-radius: 18px;
+            padding: 18px 18px 14px;
+            border: 1px solid rgba(0,0,0,0.04);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+        }
+
+        .intro h2 {
+            margin: 0 0 6px;
+            font-size: 1.2rem;
+            color: var(--vert-fonce);
+        }
+
+        .intro p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: var(--rose);
+            color: var(--rouge);
+            margin-bottom: 6px;
+        }
+
+        section {
+            margin-bottom: 32px;
+        }
+
+        section h2 {
+            margin: 0 0 12px;
+            font-size: 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--vert-fonce);
+        }
+
+        section h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--rose), transparent);
+        }
+
+        .section-subtitle {
+            margin: 0 0 14px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 10px;
+        }
+
+        @media (min-width: 720px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 10px 12px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .item-name {
+            font-weight: 600;
+            font-size: 0.98rem;
+        }
+
+        .item-price {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--rouge);
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            margin-top: 4px;
+            font-size: 0.88rem;
+            color: #555;
+        }
+
+        .tag-new {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: rgba(192,57,43,0.08);
+            color: var(--rouge);
+            margin-left: 6px;
+        }
+
+        .variant {
+            margin-top: 6px;
+            font-size: 0.86rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .variant-label {
+            color: #555;
+        }
+
+        .variant-price {
+            font-weight: 600;
+            color: var(--rouge);
+            white-space: nowrap;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            padding: 16px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">
+        <h1>Le Palais Frais</h1>
+        <p>Menu – Cuisine moderne, généreuse et gourmande</p>
+    </div>
+    <nav>
+        <a href="#entrees">Finger food & entrées</a>
+        <a href="#planches">Les planches</a>
+        <a href="#salades">Salades</a>
+        <a href="#flammekueches">Flammekueches</a>
+        <a href="#burgers">Burgers</a>
+        <a href="#boucher">Le coin du boucher</a>
+        <a href="#suggestions">Suggestions locales</a>
+        <a href="#desserts">Desserts signatures</a>
+        <a href="#coupes">Coupes glacées</a>
+    </nav>
+</header>
+
+<main>
+    <div class="intro">
+        <span class="badge">Carte du moment</span>
+        <h2>Bienvenue au Palais Frais</h2>
+        <p>Découvrez notre sélection de finger food, burgers généreux, spécialités de boucher, desserts signatures et coupes glacées, dans une ambiance moderne aux notes de vert, rouge et rose.</p>
+    </div>
+
+    <!-- Finger food & entrées -->
+    <section id="entrees">
+        <h2>Finger food & entrées</h2>
+        <p class="section-subtitle">À partager… ou pas.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Onion rings</div>
+                    <div class="item-price">3€90</div>
+                </div>
+                <div class="item-desc">Oignons frits épicés.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Beignets de calamar à la romaine <span class="tag-new">New</span></div>
+                    <div class="item-price">4€90</div>
+                </div>
+                <div class="item-desc">Accompagnés de sauce tartare.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Fingers de Chèvre</div>
+                    <div class="item-price">5€50</div>
+                </div>
+                <div class="item-desc">Panure au thym.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Cheddar sticks</div>
+                    <div class="item-price">6€50</div>
+                </div>
+                <div class="item-desc">Cheddar pané.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Spicy Cheddar potatoes <span class="tag-new">New</span></div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Croquettes de pomme de terre et Cheddar épicé.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Crispy chicken</div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Poulet mariné croustillant.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Mac &amp; cheese balls <span class="tag-new">New</span></div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Croquettes de macaroni au fromage fondant, sauce Cheddar.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planches -->
+    <section id="planches">
+        <h2>Les planches</h2>
+        <p class="section-subtitle">Idéales à partager autour d’un verre.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Cheddar fries <span class="tag-new">New</span></div>
+                    <div class="item-price">9€90</div>
+                </div>
+                <div class="item-desc">Frites, sauce Cheddar, poitrine fumée, crispy onions, ciboulette.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Cheesy platter</div>
+                </div>
+                <div class="item-desc">
+                    Cheddar sticks, fingers de Chèvre, spicy Cheddar potatoes, mac &amp; cheese balls, tortillas chips, sauce Cheddar, sauce BBQ.
+                </div>
+                <div class="variant">
+                    <span class="variant-label">Taille L</span>
+                    <span class="variant-price">13€90</span>
+                </div>
+                <div class="variant">
+                    <span class="variant-label">Taille XL</span>
+                    <span class="variant-price">19€90</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Assortiment de finger food</div>
+                </div>
+                <div class="item-desc">
+                    Cheddar sticks, beignets de calamar à la romaine, spicy onion rings, sauce salsa, sauce tartare, frites, tortillas chips.
+                </div>
+                <div class="variant">
+                    <span class="variant-label">Taille L</span>
+                    <span class="variant-price">12€90</span>
+                </div>
+                <div class="variant">
+                    <span class="variant-label">Taille XL</span>
+                    <span class="variant-price">19€90</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Planche de charcuterie et fromages</div>
+                </div>
+                <div class="item-desc">Assortiment de charcuteries et fromages.</div>
+                <div class="variant">
+                    <span class="variant-label">Taille L</span>
+                    <span class="variant-price">12€90</span>
+                </div>
+                <div class="variant">
+                    <span class="variant-label">Taille XL</span>
+                    <span class="variant-price">19€90</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Salades -->
+    <section id="salades">
+        <h2>Les salades</h2>
+        <p class="section-subtitle">Fraîcheur et gourmandise.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Queen Victoria <span class="tag-new">New</span></div>
+                    <div class="item-price">12€90</div>
+                </div>
+                <div class="item-desc">Œuf poché, poitrine fumée, pommes de terre rôties, croûtons, mesclun, vinaigrette balsamique.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Caesar Crispy Chicken</div>
+                    <div class="item-price">14€90</div>
+                </div>
+                <div class="item-desc">Poulet mariné croustillant, Grana Padano AOP, croûtons, romaine, pickles d'oignons rouges, ciboulette, sauce Caesar.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Rustic Camembert <span class="tag-new">New</span></div>
+                    <div class="item-price">14€90</div>
+                </div>
+                <div class="item-desc">Camembert pané, jambon sec, pommes de terre rôties, endive rouge, pomme, mesclun, ciboulette, vinaigrette moutarde à l’ancienne.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Fresh salad <span class="tag-new">New</span></div>
+                    <div class="item-price">15€90</div>
+                </div>
+                <div class="item-desc">Truite fumée, endive rouge, avocat, dés de mangue, suprêmes de pamplemousse, citron, petites pâtes, mesclun, cerfeuil, vinaigrette citron-miel.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flammekueches -->
+    <section id="flammekueches">
+        <h2>Les flammekueches</h2>
+        <p class="section-subtitle">Recettes généreuses à partager ou en plat.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Flam' gratinée</div>
+                    <div class="item-price">10€90</div>
+                </div>
+                <div class="item-desc">Lardons, oignon, Emmental, crème fraîche.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Flam' au Maroilles <span class="tag-new">New</span></div>
+                    <div class="item-price">13€90</div>
+                </div>
+                <div class="item-desc">Maroilles AOP, lardons, endive rouge, ciboulette, oignon, Mozzarella, crème fraîche.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Flam' à la Raclette <span class="tag-new">New</span></div>
+                    <div class="item-price">13€90</div>
+                </div>
+                <div class="item-desc">Raclette aux trois poivres, jambon blanc, ciboulette, oignon, Emmental, crémeux moutarde à l’ancienne.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Flam' royale <span class="tag-new">New</span></div>
+                    <div class="item-price">13€90</div>
+                </div>
+                <div class="item-desc">Jambon blanc, Cheddar, œuf au plat, champignons, oignon, paprika fumé, ciboulette, cerfeuil, crémeux moutarde à l'ancienne.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Burgers -->
+    <section id="burgers">
+        <h2>Les burgers</h2>
+        <p class="section-subtitle">Nos bun's, frites et steaks hachés sont d'origine française.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Smash Burger <span class="tag-new">New</span></div>
+                    <div class="item-price">13€90</div>
+                </div>
+                <div class="item-desc">Double steak haché de bœuf (environ 2x70g), sauce Cheddar, cornichons, mesclun, sauce ketchup-moutarde, bun's.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Smash Burger veggie <span class="tag-new">New</span></div>
+                    <div class="item-price">13€90</div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, sauce Cheddar, cornichons, mesclun, sauce ketchup-moutarde, bun's.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Original Au Bureau Burger</div>
+                </div>
+                <div class="item-desc">Steak haché de bœuf, poitrine fumée, sauce Cheddar, oignons caramélisés, oignon rouge, mesclun, sauce burger, bun's.</div>
+                <div class="variant">
+                    <span class="variant-label">Simple</span>
+                    <span class="variant-price">15€90</span>
+                </div>
+                <div class="variant">
+                    <span class="variant-label">Double</span>
+                    <span class="variant-price">19€90</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Original Au Bureau Burger veggie <span class="tag-new">New</span></div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, sauce Cheddar, oignons caramélisés, oignon rouge, mesclun, sauce burger, bun's.</div>
+                <div class="variant">
+                    <span class="variant-label">Simple</span>
+                    <span class="variant-price">14€90</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Chicken curry burger veggie <span class="tag-new">New</span></div>
+                    <div class="item-price">14€90</div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, sauce Cheddar, crispy onions, romaine, mayonnaise au curry, bun’s.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Very spicy burger (bœuf) <span class="tag-new">New</span></div>
+                    <div class="item-price">16€90</div>
+                </div>
+                <div class="item-desc">Steak haché de bœuf, bun’s dégoulinant de sauce Cheddar spicy, paprika fumé, piment jalapenos, oignons caramélisés, mesclun, mayonnaise spicy.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Very spicy burger (poulet) <span class="tag-new">New</span></div>
+                    <div class="item-price">16€90</div>
+                </div>
+                <div class="item-desc">Poulet mariné croustillant, bun’s dégoulinant de sauce Cheddar spicy, paprika fumé, piment jalapenos, oignons caramélisés, mesclun, mayonnaise spicy.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Very spicy burger veggie <span class="tag-new">New</span></div>
+                    <div class="item-price">15€90</div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, bun’s dégoulinant de sauce Cheddar spicy, paprika fumé, piment jalapenos, oignons caramélisés, mesclun, mayonnaise spicy.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Chicken Maroilles Burger <span class="tag-new">New</span></div>
+                    <div class="item-price">16€50</div>
+                </div>
+                <div class="item-desc">Poulet mariné croustillant, sauce Maroilles AOP, oignon rouge, romaine, sauce burger, bun's.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Chicken Maroilles Burger veggie <span class="tag-new">New</span></div>
+                    <div class="item-price">16€00</div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, sauce Maroilles AOP, oignon rouge, romaine, sauce burger, bun's.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Fondue burger <span class="tag-new">New</span></div>
+                    <div class="item-price">18€90</div>
+                </div>
+                <div class="item-desc">Steak haché de bœuf, bun's dégoulinant de fondue aux 3 fromages (Emmental, Gruyère, Beaufort), poitrine fumée, crispy onions, mesclun, crémeux Savora.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Fondue burger veggie <span class="tag-new">New</span></div>
+                    <div class="item-price">17€90</div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, bun's dégoulinant de fondue aux 3 fromages (Emmental, Gruyère, Beaufort), crispy onions, mesclun, crémeux Savora.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Royal potatoes <span class="tag-new">New</span></div>
+                </div>
+                <div class="item-desc">Steak haché de bœuf, œuf au plat, galettes de pommes de terre, oignon rouge, sauce Cheddar, sauce burger.</div>
+                <div class="variant">
+                    <span class="variant-label">Double</span>
+                    <span class="variant-price">17€90</span>
+                </div>
+                <div class="variant">
+                    <span class="variant-label">Simple</span>
+                    <span class="variant-price">21€90</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Royal potatoes veggie <span class="tag-new">New</span></div>
+                    <div class="item-price">16€90</div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, œuf au plat, galettes de pommes de terre, oignon rouge, sauce Cheddar, sauce burger.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Raclette burger <span class="tag-new">New</span></div>
+                    <div class="item-price">17€90</div>
+                </div>
+                <div class="item-desc">Steak haché de bœuf, Raclette aux trois poivres, sauce à la Raclette aux trois poivres, galette de pommes de terre, crispy onions, crémeux à la moutarde, bun's.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Raclette burger veggie <span class="tag-new">New</span></div>
+                    <div class="item-price">16€90</div>
+                </div>
+                <div class="item-desc">Suprême veggie croustillant HappyVore, Raclette aux trois poivres, sauce à la Raclette aux trois poivres, galette de pommes de terre, crispy onions, crémeux à la moutarde, bun's.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Supplément Cheddar sur frites</div>
+                    <div class="item-price">1€00</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Supplément poitrine fumée</div>
+                    <div class="item-price">1€00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le coin du boucher -->
+    <section id="boucher">
+        <h2>Le coin du boucher</h2>
+        <p class="section-subtitle">Pièces de viande et recettes mijotées.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Cassolette de joue de bœuf <span class="tag-new">New</span></div>
+                </div>
+                <div class="item-desc">Joue de bœuf, sauce crémeuse au miel et aux herbes de Provence, pommes de terre rôties, mesclun, ciboulette.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Steak à cheval au bureau</div>
+                    <div class="item-price">14€90</div>
+                </div>
+                <div class="item-desc">Steak haché de bœuf, œuf au plat, galette de pommes de terre, sauce béarnaise, frites, mesclun.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Poitrine confite <span class="tag-new">New</span></div>
+                    <div class="item-price">15€90</div>
+                </div>
+                <div class="item-desc">Viande de porc, sauce au miel et aux herbes de Provence, pommes de terre rôties, mesclun.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Tartare de bœuf</div>
+                    <div class="item-price">16€90</div>
+                </div>
+                <div class="item-desc">Frites, mesclun.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Tartare de bœuf VBF</div>
+                    <div class="item-price">16€50</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Bavette d'Aloyau</div>
+                    <div class="item-price">17€50</div>
+                </div>
+                <div class="item-desc">Environ 180g, frites, mesclun.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Entrecôte</div>
+                    <div class="item-price">23€90</div>
+                </div>
+                <div class="item-desc">Pièce de bœuf goûteuse et persillée, frites, mesclun.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Trio de brochettes <span class="tag-new">New</span></div>
+                    <div class="item-price">16€90</div>
+                </div>
+                <div class="item-desc">Poulet mariné aux épices cajun, poitrine fumée, Cheddar, oignon rouge, mayonnaise spicy, pommes de terre rôties, mesclun.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Magret de canard</div>
+                    <div class="item-price">21€90</div>
+                </div>
+                <div class="item-desc">Sauce au poivre, pommes de terre rôties, mesclun.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Bavette</div>
+                    <div class="item-price">17€50</div>
+                </div>
+                <div class="item-desc">Environ 180g, frites, mesclun.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suggestions locales -->
+    <section id="suggestions">
+        <h2>Suggestions locales</h2>
+        <p class="section-subtitle">Éditions limitées et menus spéciaux.</p>
+        <div class="grid">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Menu de la Saint-Sylvestre 31/12/2025 – DJ</div>
+                    <div class="item-price">59€00</div>
+                </div>
+                <div class="item-desc">
+                    Entrée + plat + dessert + coupe de champagne + verre de vin.
+                    <br><br>
+                    <strong>Entrée au choix :</strong><br>
+                    Gravlax de saumon : aux baies et toasts croquants<br>
+                    ou<br>
+                    Médaillon de foie gras : blinis croustillants et compotée d'oignons<br><br>
+                    <strong>Plat au choix :</strong><br>
+                    Saint-Jacques rôties : risotto crémeux au parmesan et sa bisque de homard<br>
+                    ou<br>
+                    Filet de bœuf façon Rossini : lingot de polenta et son jus de veau maison<br><br>
+                    <strong>Dessert au choix :</strong><br>
+                    Profiteroles de fête : chocolat chaud et sa crème fouettée maison<br>
+                    ou<br>
+                    Bûche cœur fruits rouges : mousse de fromage blanc et biscuit financier<br><br>
+                    Coupe de Champagne + 1 verre de vin (rouge ou blanc).
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desserts signatures -->
+    <section id="desserts">
+        <h2>Desserts signatures</h2>
+        <p class="section-subtitle">Pour finir sur une note sucrée.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Tira'Cacahuètes <span class="tag-new">New</span></div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Crémeux tiramisu aux cacahuètes, biscuits à la cuillère imbibés au café, sauce au caramel beurre salé, cacahuètes caramélisées, sucre glace.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Cheesecake <span class="tag-new">New</span></div>
+                    <div class="item-price">5€90</div>
+                </div>
+                <div class="item-desc">Crémeux cheesecake, base cookie aux pépites de chocolat, sauce au caramel beurre salé, noisettes caramélisées, sucre glace.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">The Hot Cookie</div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Gros cookie aux pépites de chocolat servi chaud et moelleux, cacahuètes caramélisées, sauce au caramel beurre salé.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Pain perdu by Au Bureau <span class="tag-new">New</span></div>
+                    <div class="item-price">7€50</div>
+                </div>
+                <div class="item-desc">Pain perdu, glace façon sundae vanille-caramel-cacahuètes, cacahuètes caramélisées, sauce au caramel beurre salé, sucre glace.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Moelleux au chocolat</div>
+                    <div class="item-price">7€50</div>
+                </div>
+                <div class="item-desc">Pâte à tartiner Bonne Maman®, crème glacée vanille, crème fouettée.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Mousse aux 2 chocolats <span class="tag-new">New</span></div>
+                    <div class="item-price">6€50</div>
+                </div>
+                <div class="item-desc">Mousse au chocolat blanc, mousse au chocolat noir, nougatine.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Crêpe au sucre</div>
+                    <div class="item-price">3€50</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Crêpe au chocolat <span class="tag-new">New</span></div>
+                    <div class="item-price">4€90</div>
+                </div>
+                <div class="item-desc">Pâte à tartiner Bonne Maman®.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Crêpe Au Bureau</div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Crème glacée à la vanille, pâte à tartiner Bonne Maman®, noisettes, sucre glace.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Café ou thé gourmand</div>
+                    <div class="item-price">7€90</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coupes glacées -->
+    <section id="coupes">
+        <h2>Coupes glacées</h2>
+        <p class="section-subtitle">Glaces et sorbets à composer ou signatures.</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Chocolat liégeois <span class="tag-new">New</span></div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Crèmes glacées chocolat noir et vanille, pâte à tartiner Bonne Maman®, gaufrette, crème fouettée.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Dame Blanche <span class="tag-new">New</span></div>
+                    <div class="item-price">6€90</div>
+                </div>
+                <div class="item-desc">Crème glacée vanille, pâte à tartiner Bonne Maman®, gaufrette, crème fouettée.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Sundae by Au Bureau <span class="tag-new">New</span></div>
+                    <div class="item-price">8€90</div>
+                </div>
+                <div class="item-desc">Glace façon sundae vanille-caramel-cacahuètes, crème glacée caramel fleur de sel, cacahuètes caramélisées, gaufrette, sauce au caramel beurre salé, crème fouettée.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Fruity Sunset <span class="tag-new">New</span></div>
+                    <div class="item-price">8€90</div>
+                </div>
+                <div class="item-desc">Sorbets fraise, mangue et citron vert, coulis exotique, noisettes caramélisées, crème fouettée.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Crazy Nutty</div>
+                    <div class="item-price">8€90</div>
+                </div>
+                <div class="item-desc">Glace nutty chocolat-noisette, crèmes glacées vanille et caramel fleur de sel, pâte à tartiner Bonne Maman®, pop corn caramélisé, crème fouettée.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Let it nut <span class="tag-new">New</span></div>
+                    <div class="item-price">8€90</div>
+                </div>
+                <div class="item-desc">Crèmes glacées vanille et chocolat noir, glace noix, pâte à tartiner Bonne Maman®, noisettes caramélisées, crème fouettée.</div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Coupe à composer – 2 boules</div>
+                    <div class="item-price">4€90</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item-header">
+                    <div class="item-name">Coupe à composer – 3 boules</div>
+                    <div class="item-price">6€50</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Le Palais Frais – Menu indicatif, prix et plats susceptibles d’évoluer.
+</footer>
+
+</body>
+</html>
